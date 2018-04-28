@@ -30,6 +30,20 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'html-loader'
+            },
+            {
+                test: /\.css$/,
+                use:['style-loader','css-loader',{
+                    loader: 'postcss-loader',
+                    options:{
+                        plugins:[
+                            require('postcss-import'),
+                            require('autoprefixer')({
+                                browsers:['last 5 versions']
+                            })
+                        ]
+                    }
+                }]
             }
         ]
     },
